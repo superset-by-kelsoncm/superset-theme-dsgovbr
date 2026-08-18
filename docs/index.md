@@ -8,9 +8,7 @@ sidebar_position: 1
 
 Bem-vindo à documentação técnica do **SupersetBR**, uma iniciativa voltada a adaptar o Apache Superset para o padrão visual, acessibilidade e requisitos do **Design System do Governo Federal do Brasil (DSGovBR)**.
 
-<p align="center">
-  <img src="../theme/assets/img/logo-dsgovbr.jpg" alt="Logo SupersetBR" width="300" />
-</p>
+![Logo SupersetBR](../theme/assets/img/logo-dsgovbr.jpg)
 
 ## Conteúdo detalhado
 
