@@ -1,9 +1,13 @@
-name: Deploy Sphinx Documentation to Pages
+name: Deploy Documentation to Pages
 
 on:
   push:
     branches:
       - main
+    paths:
+      - "docs/**"
+      - "website/**"
+      - ".github/workflows/docs.yml"
   workflow_dispatch:
 
 # Permissões necessárias para publicar no GitHub Pages
@@ -13,8 +17,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -23,26 +27,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
-          cache: "pip"
-          cache-dependency-path: "docs/requirements.txt"
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: "website/package-lock.json"
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r docs/requirements.txt
+        working-directory: website
+        run: npm install
 
-      - name: Build HTML
-        run: |
-          make -C docs html
+      - name: Build documentation site
+        working-directory: website
+        run: npm run build
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/_build/html
+          path: website/build
 
   deploy:
     needs: build

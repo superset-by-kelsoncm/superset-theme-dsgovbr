@@ -17,7 +17,8 @@ O projeto adota uma estratégia de customização por camadas de override não i
 * **`.github/workflows/`**: Pipelines automatizados de CI/CD para compilação e publicação de imagens de Desenvolvimento e Produção.
 * **`config/`**: Configuração do Apache Superset (`superset_config.py`), centralizando parâmetros de segurança, autenticação e banco de dados.
 * **`docker/`**: Arquivos de containerização (`Dockerfile` e `docker-compose.yml`).
-* **`docs/`**: Documentação técnica do projeto estruturada para compilação via **Sphinx**.
+* **`docs/`**: Conteúdo da documentação técnica do projeto (Markdown), incluindo ADRs (`docs/adr/`) e a matriz de compatibilidade.
+* **`website/`**: Site de documentação construído com **Docusaurus 3** e o tema [`superset-docs-theme`](https://www.npmjs.com/package/superset-docs-theme), renderizando o conteúdo de `docs/`.
 * **`embeds/`**: Exemplos práticos de consumo de dashboards privados e seguros para portais em Django e Moodle.
 * **`infra/proxy/`**: Configurações do Nginx para publicação e controle de cabeçalhos HTTP/CSP.
 * **`theme/`**: Assets de mídia, folhas de estilo CSS (`dsgovbr-theme.css`) e templates do Flask-AppBuilder.
@@ -59,23 +60,26 @@ O projeto adota uma estratégia de customização por camadas de override não i
 
 ## 4. Documentação Oficial
 
-A documentação detalhada do projeto está disponível na pasta `docs/`. Ela foi estruturada com o Sphinx.
+A documentação detalhada do projeto está disponível em [superset-by-kelsoncm.github.io/superset-theme-dsgovbr](https://superset-by-kelsoncm.github.io/superset-theme-dsgovbr/), com conteúdo em `docs/` renderizado pelo site Docusaurus em `website/` (tema [`superset-docs-theme`](https://www.npmjs.com/package/superset-docs-theme)).
 
 ### Como gerar a documentação em HTML localmente:
 
-1. **Instale as dependências de documentação:**
+1. **Instale as dependências do site:**
    ```bash
-   pip install sphinx furo
+   cd website
+   npm install
    ```
 
-2. **Gere a documentação:**
+2. **Rode em modo desenvolvimento (hot-reload):**
    ```bash
-   cd docs
-   make html
+   npm start
    ```
 
-3. **Visualize no navegador:**
-   Abra o arquivo `docs/_build/html/index.html` em seu navegador.
+3. **Ou gere o build estático de produção:**
+   ```bash
+   npm run build
+   npm run serve
+   ```
 
 ---
 
