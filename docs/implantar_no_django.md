@@ -69,6 +69,10 @@ def get_guest_token(request, dashboard_id):
     return JsonResponse({"token": guest_res.json().get("token")})
 ```
 
+:::caution Não exponha detalhes de erros ao cliente
+Se a chamada ao Superset falhar, registre a exceção em log (`logger.exception(...)`) e devolva ao navegador apenas uma mensagem genérica (ex.: `{"error": "Erro de comunicacao com o Superset"}`, status 502). Mensagens de exceção podem revelar URLs e detalhes internos. Veja o tratamento completo em `embeds/django/views.py`.
+:::
+
 ## Passo 2: Implementação no Frontend (HTML/JS)
 
 No seu template Django (veja o exemplo em `embeds/django/dashboard.html`), insira a div do contêiner e carregue o SDK oficial do Superset para embutir o dashboard:
