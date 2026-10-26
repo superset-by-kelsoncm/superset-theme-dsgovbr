@@ -1,10 +1,14 @@
 # Exemplo de integração do SupersetBR com Django para Embed Privado
 # Cuidado: Não quebrar upstream. Leia AGENTS.md antes de mexer.
 
+import logging
+
 import requests
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
+
+logger = logging.getLogger(__name__)
 
 SUPERSET_URL = getattr(settings, "SUPERSET_URL", "http://localhost:8088")
 SUPERSET_ADMIN_USERNAME = getattr(settings, "SUPERSET_ADMIN_USERNAME", "admin")
@@ -65,8 +69,10 @@ def get_guest_token(request, dashboard_id):
         guest_token = response.json().get("token")
         return JsonResponse({"token": guest_token})
 
-    except requests.exceptions.RequestException as e:
-        return JsonResponse({"error": f"Erro de comunicacao com o Superset: {str(e)}"}, status=502)
+    except requests.exceptions.RequestException:
+        # Detalhes da exceção só no log; a resposta não pode vazar informação interna.
+        logger.exception("Falha ao obter guest token do Superset")
+        return JsonResponse({"error": "Erro de comunicacao com o Superset"}, status=502)
 
 
 def dashboard_page(request):
