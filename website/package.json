@@ -1,6 +1,6 @@
 {
   "name": "superset-theme-dsgovbr-docs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Documentação técnica do SupersetBR (superset-theme-dsgovbr), construída com Docusaurus 3 e superset-docs-theme.",
   "scripts": {
@@ -11,9 +11,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.6.0",
-    "@docusaurus/preset-classic": "^3.6.0",
-    "@docusaurus/theme-mermaid": "^3.6.0",
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@docusaurus/theme-mermaid": "^3.10.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.0",
     "react": "^19.0.0",
@@ -21,16 +21,29 @@
     "superset-docs-theme": "^0.1.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.6.0",
-    "@docusaurus/tsconfig": "^3.6.0",
-    "@docusaurus/types": "^3.6.0",
+    "@docusaurus/module-type-aliases": "^3.10.2",
+    "@docusaurus/tsconfig": "^3.10.2",
+    "@docusaurus/types": "^3.10.2",
     "typescript": "^5.5.0"
   },
   "browserslist": {
-    "production": [">0.5%", "not dead", "not op_mini all"],
-    "development": ["last 3 chrome version", "last 3 firefox version", "last 5 safari version"]
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "overrides": {
+    "image-size": "^2.0.3",
+    "serialize-javascript": "^7.0.5",
+    "uuid": "^14.0.1"
   }
 }
