@@ -1,6 +1,6 @@
 {
   "name": "superset-theme-dsgovbr-docs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "Documentação técnica do SupersetBR (superset-theme-dsgovbr), construída com Docusaurus 3 e superset-docs-theme.",
   "scripts": {
@@ -43,6 +43,7 @@
   },
   "overrides": {
     "image-size": "^2.0.3",
+    "tinypool": "^2.1.1",
     "serialize-javascript": "^7.0.5",
     "uuid": "^14.0.1"
   }
